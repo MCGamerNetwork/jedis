@@ -93,4 +93,8 @@ public abstract class Pool<T> implements Closeable {
       throw new JedisException("Could not destroy the pool", e);
     }
   }
+  
+  public GenericObjectPool<T> getInternalPool() {
+    return internalPool;
+  }
 }
