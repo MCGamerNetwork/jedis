@@ -43,6 +43,14 @@ public abstract class Pool<T> implements Closeable {
     this.internalPool = new GenericObjectPool<T>(factory, poolConfig);
   }
 
+  public void reinitPool(GenericObjectPoolConfig poolConfig) {
+    if (this.internalPool == null) {
+      throw new IllegalStateException("No pool has been initialized to reference against!");
+    }
+
+    initPool(poolConfig, internalPool.getFactory());
+  }
+
   public T getResource() {
     try {
       return internalPool.borrowObject();
