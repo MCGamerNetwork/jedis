@@ -11,6 +11,8 @@ import redis.clients.util.Pool;
 
 public class JedisPool extends Pool<Jedis> {
 
+  private String clientNameOnReturn = null;
+
   public JedisPool() {
     this(Protocol.DEFAULT_HOST, Protocol.DEFAULT_PORT);
   }
@@ -87,6 +89,14 @@ public class JedisPool extends Pool<Jedis> {
         JedisURIHelper.getDBIndex(uri) != null ? JedisURIHelper.getDBIndex(uri) : 0, null));
   }
 
+  public String getClientNameOnReturn() {
+    return clientNameOnReturn;
+  }
+  
+  public void setClientNameOnReturn(String s) {
+    clientNameOnReturn = s;
+  }
+
   @Override
   public Jedis getResource() {
     Jedis jedis = super.getResource();
@@ -103,6 +113,9 @@ public class JedisPool extends Pool<Jedis> {
   public void returnResource(final Jedis resource) {
     if (resource != null) {
       try {
+        if (clientNameOnReturn != null) {
+          resource.clientSetname(clientNameOnReturn);
+        }
         resource.resetState();
         returnResourceObject(resource);
       } catch (Exception e) {
