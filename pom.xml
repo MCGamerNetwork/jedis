@@ -47,19 +47,19 @@
         <repository>
             <id>mcgamer-deployment</id>
             <name>MCGamer Public Releases</name>
-            <url>http://repo.mcgamer.net/repository/releases-public/</url>
+            <url>https://repo.mcgamer.net/repository/releases-public/</url>
         </repository>
         <snapshotRepository>
             <id>mcgamer-deployment</id>
             <name>MCGamer Public Snapshots</name>
-            <url>http://repo.mcgamer.net/repository/snapshots-public/</url>
+            <url>https://repo.mcgamer.net/repository/snapshots-public/</url>
         </snapshotRepository>
     </distributionManagement>
 
     <repositories>
         <repository>
             <id>mcgamer</id>
-            <url>http://repo.mcgamer.net/repository/public/</url>
+            <url>https://repo.mcgamer.net/repository/public/</url>
         </repository>
     </repositories>
 
